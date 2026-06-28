@@ -1,126 +1,172 @@
 package view;
 
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
+
+import memoria.DadosMemoria;
 import model.Aluno;
 
-public class alunoView {
+public class AlunoView {
 
-	protected Shell shell;
-	private Text textIdEleitor;
-	private Text textNomeEleitor;
+	protected Shell shellAluno;
+	private DadosMemoria dadosMemoria = new DadosMemoria();
+
 	private Text textIdAluno;
 	private Text textNomeAluno;
-	private Text textNumProntuario;
-	private Text textCurso;
-	private Text textIdEleitorExibido;
+	private Text textLoginAluno;
+	private Text textSenhaAluno;
+	private Text textCursoAluno;
+	private Table tableAlunos;
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		try {
-			alunoView window = new alunoView();
+			AlunoView window = new AlunoView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shellAluno.open();
+		shellAluno.layout();
+		while (!shellAluno.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(589, 521);
-		shell.setText("SWT Application");
-		
-		Label lblNomeEleitor = new Label(shell, SWT.NONE);
-		lblNomeEleitor.setBounds(24, 52, 70, 17);
-		lblNomeEleitor.setText("Nome Eleitor");
-		
-		Label lblIdEleitor = new Label(shell, SWT.NONE);
-		lblIdEleitor.setBounds(24, 10, 70, 17);
-		lblIdEleitor.setText("Id Eleitor");
-		
-		Label lblIdAluno = new Label(shell, SWT.NONE);
-		lblIdAluno.setBounds(24, 100, 70, 17);
+		shellAluno = new Shell();
+		shellAluno.setSize(830, 570);
+		shellAluno.setText("Cadastro de Aluno");
+
+		MessageBox caixaWarning = new MessageBox(shellAluno, SWT.OK);
+		caixaWarning.setText("Aviso");
+
+		Label lblIdAluno = new Label(shellAluno, SWT.NONE);
+		lblIdAluno.setBounds(25, 25, 105, 20);
 		lblIdAluno.setText("Id Aluno");
-		
-		Label lblNomeAluno = new Label(shell, SWT.NONE);
-		lblNomeAluno.setBounds(24, 149, 70, 17);
-		lblNomeAluno.setText("Nome Aluno");
-		
-		textIdEleitor = new Text(shell, SWT.BORDER);
-		textIdEleitor.setBounds(191, 10, 83, 30);
-		
-		textNomeEleitor = new Text(shell, SWT.BORDER);
-		textNomeEleitor.setBounds(191, 46, 83, 30);
-		
-		textIdAluno = new Text(shell, SWT.BORDER);
-		textIdAluno.setBounds(191, 94, 83, 30);
-		
-		textNomeAluno = new Text(shell, SWT.BORDER);
-		textNomeAluno.setBounds(191, 136, 83, 30);
-		
-		Button btnInserirAluno = new Button(shell, SWT.NONE);
-		btnInserirAluno.setBounds(461, 399, 104, 34);
-		btnInserirAluno.setText("Inserir Aluno");
-		btnInserirAluno.addSelectionListener(new SelectionAdapter() {
-			
+
+		textIdAluno = new Text(shellAluno, SWT.BORDER);
+		textIdAluno.setBounds(135, 22, 110, 24);
+
+		Label lblNome = new Label(shellAluno, SWT.NONE);
+		lblNome.setBounds(25, 65, 105, 20);
+		lblNome.setText("Nome");
+
+		textNomeAluno = new Text(shellAluno, SWT.BORDER);
+		textNomeAluno.setBounds(135, 62, 210, 24);
+
+		Label lblLogin = new Label(shellAluno, SWT.NONE);
+		lblLogin.setBounds(25, 105, 105, 20);
+		lblLogin.setText("Login");
+
+		textLoginAluno = new Text(shellAluno, SWT.BORDER);
+		textLoginAluno.setBounds(135, 102, 160, 24);
+
+		Label lblSenha = new Label(shellAluno, SWT.NONE);
+		lblSenha.setBounds(25, 145, 105, 20);
+		lblSenha.setText("Senha");
+
+		textSenhaAluno = new Text(shellAluno, SWT.BORDER);
+		textSenhaAluno.setBounds(135, 142, 160, 24);
+
+		Label lblCurso = new Label(shellAluno, SWT.NONE);
+		lblCurso.setBounds(25, 185, 105, 20);
+		lblCurso.setText("Curso");
+
+		textCursoAluno = new Text(shellAluno, SWT.BORDER);
+		textCursoAluno.setBounds(135, 182, 210, 24);
+
+		Button btnIncluirAluno = new Button(shellAluno, SWT.NONE);
+		btnIncluirAluno.setBounds(380, 62, 110, 28);
+		btnIncluirAluno.setText("Incluir");
+		btnIncluirAluno.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
-				Aluno aluno = new Aluno(Integer.parseInt(textIdEleitor.getText()), 
-						textNomeAluno.getText(), Integer.parseInt(textIdAluno.getText()), 
-						Integer.parseInt(textNumProntuario.getText()), 
-						textCurso.getText());
-				
-				textIdEleitorExibido.setText(String.valueOf(aluno.getIdEleitor()));
+				if (textIdAluno.getCharCount() == 0 || textNomeAluno.getCharCount() == 0
+						|| textCursoAluno.getCharCount() == 0) {
+					caixaWarning.setMessage("Informe id, nome e curso do aluno.");
+					caixaWarning.open();
+					return;
+				}
+
+				try {
+					Aluno aluno = new Aluno(Integer.valueOf(textIdAluno.getText()), textNomeAluno.getText(),
+							textLoginAluno.getText(), textSenhaAluno.getText(), textCursoAluno.getText());
+					dadosMemoria.incluirAluno(aluno);
+					textIdAluno.setText("");
+					textNomeAluno.setText("");
+					textLoginAluno.setText("");
+					textSenhaAluno.setText("");
+					textCursoAluno.setText("");
+					atualizarTabelaAlunos();
+				} catch (Exception erro) {
+					caixaWarning.setMessage("O id do aluno deve ser numerico.");
+					caixaWarning.open();
+				}
 			}
 		});
-		
-		Label lblNumProntuario = new Label(shell, SWT.NONE);
-		lblNumProntuario.setBounds(24, 200, 70, 17);
-		lblNumProntuario.setText("Prontuário");
-		
-		textNumProntuario = new Text(shell, SWT.BORDER);
-		textNumProntuario.setBounds(191, 200, 83, 30);
-		
-		textCurso = new Text(shell, SWT.BORDER);
-		textCurso.setBounds(191, 258, 83, 30);
-		
-		Label lblCurso = new Label(shell, SWT.NONE);
-		lblCurso.setBounds(24, 258, 70, 17);
-		lblCurso.setText("Curso");
-		
-		textIdEleitorExibido = new Text(shell, SWT.BORDER);
-		textIdEleitorExibido.setBounds(461, 10, 83, 30);
-		
-		Label lblIdEleitorExibido = new Label(shell, SWT.NONE);
-		lblIdEleitorExibido.setBounds(353, 23, 70, 17);
-		lblIdEleitorExibido.setText("New Label");
 
+		Button btnConsultarAluno = new Button(shellAluno, SWT.NONE);
+		btnConsultarAluno.setBounds(380, 105, 110, 28);
+		btnConsultarAluno.setText("Consultar");
+		btnConsultarAluno.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				atualizarTabelaAlunos();
+			}
+		});
+
+		tableAlunos = new Table(shellAluno, SWT.BORDER | SWT.FULL_SELECTION);
+		tableAlunos.setBounds(25, 265, 760, 250);
+		tableAlunos.setHeaderVisible(true);
+		tableAlunos.setLinesVisible(true);
+
+		TableColumn tblclmnId = new TableColumn(tableAlunos, SWT.NONE);
+		tblclmnId.setWidth(70);
+		tblclmnId.setText("Id");
+
+		TableColumn tblclmnNome = new TableColumn(tableAlunos, SWT.NONE);
+		tblclmnNome.setWidth(180);
+		tblclmnNome.setText("Nome");
+
+		TableColumn tblclmnLogin = new TableColumn(tableAlunos, SWT.NONE);
+		tblclmnLogin.setWidth(150);
+		tblclmnLogin.setText("Login");
+
+		TableColumn tblclmnCurso = new TableColumn(tableAlunos, SWT.NONE);
+		tblclmnCurso.setWidth(150);
+		tblclmnCurso.setText("Curso");
+
+		TableColumn tblclmnTcc = new TableColumn(tableAlunos, SWT.NONE);
+		tblclmnTcc.setWidth(200);
+		tblclmnTcc.setText("TCC");
+
+		atualizarTabelaAlunos();
+	}
+
+	private void atualizarTabelaAlunos() {
+		tableAlunos.removeAll();
+		for (Aluno aluno : dadosMemoria.consultarAlunos()) {
+			TableItem item = new TableItem(tableAlunos, SWT.NONE);
+			String tituloTcc = aluno.getTcc() == null ? "" : aluno.getTcc().getTitulo();
+			item.setText(new String[] { String.valueOf(aluno.getId()), aluno.getNome(), aluno.getLogin(),
+					aluno.getCurso(), tituloTcc });
+		}
 	}
 }

@@ -1,41 +1,44 @@
 package model;
 
-public class Aluno {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Coordenador {
 
 	private Integer id;
 	private String nome;
 	private String login;
 	private String senha;
-	private String curso;
-	private TCC tcc;
+	private List<TCC> tccs;
 
-	public Aluno() {
+	public Coordenador() {
+		this.tccs = new ArrayList<TCC>();
 	}
 
-	public Aluno(Integer id) {
+	public Coordenador(Integer id) {
+		this();
 		this.id = id;
 	}
 
-	public Aluno(Integer id, String nome) {
-		this.id = id;
+	public Coordenador(Integer id, String nome) {
+		this(id);
 		this.nome = nome;
 	}
 
-	public Aluno(Integer id, String nome, String login, String senha, String curso) {
+	public Coordenador(Integer id, String nome, String login, String senha) {
+		this();
 		this.id = id;
 		this.nome = nome;
 		this.login = login;
 		this.senha = senha;
-		this.curso = curso;
 	}
 
 	public void atualizarDados() {
 	}
 
-	public void atualizarDados(String nome, String login, String curso) {
+	public void atualizarDados(String nome, String login) {
 		this.nome = nome;
 		this.login = login;
-		this.curso = curso;
 	}
 
 	public void alterarSenha() {
@@ -77,24 +80,20 @@ public class Aluno {
 		this.senha = senha;
 	}
 
-	public String getCurso() {
-		return curso;
+	public List<TCC> getTccs() {
+		return tccs;
 	}
 
-	public void setCurso(String curso) {
-		this.curso = curso;
+	public void setTccs(List<TCC> tccs) {
+		this.tccs = tccs;
 	}
 
-	public TCC getTcc() {
-		return tcc;
-	}
-
-	public void setTcc(TCC tcc) {
-		this.tcc = tcc;
+	public void adicionarTcc(TCC tcc) {
+		this.tccs.add(tcc);
 	}
 
 	@Override
 	public String toString() {
-		return id + " - " + nome + " (" + curso + ")";
+		return id + " - " + nome;
 	}
 }
