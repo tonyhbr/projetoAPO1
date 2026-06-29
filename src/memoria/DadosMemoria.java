@@ -3,9 +3,11 @@ package memoria;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Agenda;
 import model.Aluno;
 import model.Coordenador;
 import model.Orientador;
+import model.Reuniao;
 import model.TCC;
 import model.Termo;
 
@@ -16,6 +18,8 @@ public class DadosMemoria {
 	private static List<Coordenador> listaCoordenadores = new ArrayList<Coordenador>();
 	private static List<TCC> listaTccs = new ArrayList<TCC>();
 	private static List<Termo> listaTermos = new ArrayList<Termo>();
+	private static List<Agenda> listaAgendas = new ArrayList<Agenda>();
+	private static List<Reuniao> listaReunioes = new ArrayList<Reuniao>();
 
 	public void incluirAluno(Aluno aluno) {
 		listaAlunos.add(aluno);
@@ -50,6 +54,18 @@ public class DadosMemoria {
 			termo.getTcc().adicionarTermo(termo);
 		}
 	}
+	
+	public void incluirAgenda(Agenda agenda) {
+	    listaAgendas.add(agenda);
+	}
+
+	public void incluirReuniao(Reuniao reuniao) {
+	    listaReunioes.add(reuniao);
+	    if (reuniao.getAgenda() != null) {
+	        reuniao.getAgenda().adicionarReuniao(reuniao);
+	        reuniao.getAgenda().reservarHorario();
+	    }
+	}
 
 	public List<Aluno> consultarAlunos() {
 		return listaAlunos;
@@ -69,5 +85,12 @@ public class DadosMemoria {
 
 	public List<Termo> consultarTermos() {
 		return listaTermos;
+	}
+	public List<Agenda> consultarAgendas() {
+	    return listaAgendas;
+	}
+
+	public List<Reuniao> consultarReunioes() {
+	    return listaReunioes;
 	}
 }
