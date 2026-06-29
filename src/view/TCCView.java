@@ -1,5 +1,5 @@
 package view;
-
+	
 import java.time.LocalDate;
 
 import org.eclipse.swt.SWT;
@@ -183,7 +183,7 @@ public class TCCView {
 		btnAluno.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				new AlunoView().open();
+				new alunoView().open();
 				atualizarTudo();
 			}
 		});

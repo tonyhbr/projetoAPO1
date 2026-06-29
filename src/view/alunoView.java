@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 import memoria.DadosMemoria;
 import model.Aluno;
 
-public class AlunoView {
+public class alunoView {
 
 	protected Shell shellAluno;
 	private DadosMemoria dadosMemoria = new DadosMemoria();
@@ -30,7 +30,7 @@ public class AlunoView {
 
 	public static void main(String[] args) {
 		try {
-			AlunoView window = new AlunoView();
+			alunoView window = new alunoView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
