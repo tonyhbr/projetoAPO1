@@ -5,7 +5,10 @@ import java.util.List;
 
 import model.Agenda;
 import model.Aluno;
+import model.Arquivo;
+import model.Conversa;
 import model.Coordenador;
+import model.Mensagem;
 import model.Orientador;
 import model.Reuniao;
 import model.TCC;
@@ -20,7 +23,29 @@ public class DadosMemoria {
 	private static List<Termo> listaTermos = new ArrayList<Termo>();
 	private static List<Agenda> listaAgendas = new ArrayList<Agenda>();
 	private static List<Reuniao> listaReunioes = new ArrayList<Reuniao>();
+	private static List<Conversa> listaConversas = new ArrayList<Conversa>();
+	private static List<Mensagem> listaMensagens = new ArrayList<Mensagem>();
+	private static List<Arquivo> listaArquivos = new ArrayList<Arquivo>();
 
+	
+	public void incluirConversa(Conversa conversa) {
+		listaConversas.add(conversa);
+	}
+
+	public void incluirMensagem(Mensagem mensagem) {
+		listaMensagens.add(mensagem);
+		if (mensagem.getConversa() != null) {
+			mensagem.getConversa().adicionarMensagem(mensagem);
+		}
+	}
+
+	public void incluirArquivo(Arquivo arquivo) {
+		listaArquivos.add(arquivo);
+		if (arquivo.getConversa() != null) {
+			arquivo.getConversa().adicionarArquivo(arquivo);
+		}
+	}
+	
 	public void incluirAluno(Aluno aluno) {
 		listaAlunos.add(aluno);
 	}
@@ -92,5 +117,17 @@ public class DadosMemoria {
 
 	public List<Reuniao> consultarReunioes() {
 	    return listaReunioes;
+	}
+	
+	public List<Conversa> consultarConversas() {
+		return listaConversas;
+	}
+
+	public List<Mensagem> consultarMensagens() {
+		return listaMensagens;
+	}
+
+	public List<Arquivo> consultarArquivos() {
+		return listaArquivos;
 	}
 }
