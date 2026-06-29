@@ -16,12 +16,20 @@ public class Agenda {
         this.reunioes = new ArrayList<>();
     }
 	
-	public Agenda(Integer id, LocalDate data, LocalTime horario, boolean disponibilidade, List<Reuniao> reunioes) {		super();
+	public Agenda(Integer id, LocalDate data, LocalTime horario, boolean disponibilidade, List<Reuniao> reunioes) {
 		this.id = id;
 		this.data = data;
 		this.horario = horario;
 		this.disponibilidade = disponibilidade;
 		this.reunioes = new ArrayList<>();
+	}
+	
+	public Agenda(Integer id, LocalDate data, LocalTime horario, boolean disponibilidade) {
+	    this.id = id;
+	    this.data = data;
+	    this.horario = horario;
+	    this.disponibilidade = disponibilidade;
+	    this.reunioes = new ArrayList<>();
 	}
 	
 	public boolean verificarDisponibilidade() {
