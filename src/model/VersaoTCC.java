@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VersaoTCC extends TCC {
 	
@@ -13,11 +15,6 @@ public class VersaoTCC extends TCC {
 	private Orientador orientador;
 	private Coordenador coordenador;
 	private List<Termo> termos;
-	
-	public VersaoTCC(Integer id, String descricao, LocalDate dataEnvio) {
-		super(id, descricao, dataEnvio);
-		// TODO Auto-generated constructor stub
-	}
 
 	public Integer getId() {
 		return id;
