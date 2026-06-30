@@ -5,9 +5,18 @@ import java.util.List;
 
 import model.Agenda;
 import model.Aluno;
+<<<<<<< HEAD
 import model.Avaliacao;
+=======
+import model.Arquivo;
+import model.Conversa;
+>>>>>>> branch 'master' of https://github.com/tonyhbr/projetoAPO1.git
 import model.Coordenador;
+<<<<<<< HEAD
 import model.Feedback;
+=======
+import model.Mensagem;
+>>>>>>> branch 'master' of https://github.com/tonyhbr/projetoAPO1.git
 import model.Orientador;
 import model.Reuniao;
 import model.Tarefa;
@@ -17,13 +26,51 @@ import model.VersaoTCC;
 
 public class DadosMemoria {
 
+<<<<<<< HEAD
     private static List<Aluno> listaAlunos = new ArrayList<>();
     private static List<Orientador> listaOrientadores = new ArrayList<>();
     private static List<Coordenador> listaCoordenadores = new ArrayList<>();
+=======
+	private static List<Aluno> listaAlunos = new ArrayList<Aluno>();
+	private static List<Orientador> listaOrientadores = new ArrayList<Orientador>();
+	private static List<Coordenador> listaCoordenadores = new ArrayList<Coordenador>();
+	private static List<TCC> listaTccs = new ArrayList<TCC>();
+	private static List<Termo> listaTermos = new ArrayList<Termo>();
+	private static List<Agenda> listaAgendas = new ArrayList<Agenda>();
+	private static List<Reuniao> listaReunioes = new ArrayList<Reuniao>();
+	private static List<Conversa> listaConversas = new ArrayList<Conversa>();
+	private static List<Mensagem> listaMensagens = new ArrayList<Mensagem>();
+	private static List<Arquivo> listaArquivos = new ArrayList<Arquivo>();
+>>>>>>> branch 'master' of https://github.com/tonyhbr/projetoAPO1.git
 
+<<<<<<< HEAD
     private static List<TCC> listaTccs = new ArrayList<>();
     private static List<Termo> listaTermos = new ArrayList<>();
     private static List<VersaoTCC> listaVersoesTCC = new ArrayList<>();
+=======
+	
+	public void incluirConversa(Conversa conversa) {
+		listaConversas.add(conversa);
+	}
+
+	public void incluirMensagem(Mensagem mensagem) {
+		listaMensagens.add(mensagem);
+		if (mensagem.getConversa() != null) {
+			mensagem.getConversa().adicionarMensagem(mensagem);
+		}
+	}
+
+	public void incluirArquivo(Arquivo arquivo) {
+		listaArquivos.add(arquivo);
+		if (arquivo.getConversa() != null) {
+			arquivo.getConversa().adicionarArquivo(arquivo);
+		}
+	}
+	
+	public void incluirAluno(Aluno aluno) {
+		listaAlunos.add(aluno);
+	}
+>>>>>>> branch 'master' of https://github.com/tonyhbr/projetoAPO1.git
 
     private static List<Avaliacao> listaAvaliacoes = new ArrayList<>();
 
@@ -66,6 +113,7 @@ public class DadosMemoria {
         }
     }
 
+<<<<<<< HEAD
     public void incluirTermo(Termo termo) {
 
         listaTermos.add(termo);
@@ -176,3 +224,21 @@ public class DadosMemoria {
     }
 
 }
+=======
+	public List<Reuniao> consultarReunioes() {
+	    return listaReunioes;
+	}
+	
+	public List<Conversa> consultarConversas() {
+		return listaConversas;
+	}
+
+	public List<Mensagem> consultarMensagens() {
+		return listaMensagens;
+	}
+
+	public List<Arquivo> consultarArquivos() {
+		return listaArquivos;
+	}
+}
+>>>>>>> branch 'master' of https://github.com/tonyhbr/projetoAPO1.git
