@@ -183,7 +183,7 @@ public class TCCView {
 		btnAluno.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				new alunoView().open();
+				new AlunoView().open();
 				atualizarTudo();
 			}
 		});
@@ -229,6 +229,18 @@ public class TCCView {
 				new TermoView().open();
 				atualizarTudo();
 			}
+		});
+		
+		Button btnVersao = new Button(shellTcc, SWT.NONE);
+		btnVersao.setBounds(705, 225, 120, 28);
+		btnVersao.setText("Abrir Versões");
+
+		btnVersao.addSelectionListener(new SelectionAdapter() {
+		    @Override
+		    public void widgetSelected(SelectionEvent e) {
+		        new VersaoTCCView().open();
+		        atualizarTudo();
+		    }
 		});
 
 		tableTccs = new Table(shellTcc, SWT.BORDER | SWT.FULL_SELECTION);

@@ -1,91 +1,54 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class VersaoTCC extends TCC {
-	
-	private Integer id;
-	private String titulo;
-	private String status;
-	private LocalDate dataInicio;
-	private LocalDate dataEntrega;
-	private Aluno aluno;
-	private Orientador orientador;
-	private Coordenador coordenador;
-	private List<Termo> termos;
+public class VersaoTCC {
 
-	public Integer getId() {
-		return id;
-	}
+    private Integer id;
+    private String descricao;
+    private LocalDate dataEnvio;
+    private TCC tcc;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public VersaoTCC(Integer id, String descricao, LocalDate dataEnvio, TCC tcc) {
+        this.id = id;
+        this.descricao = descricao;
+        this.dataEnvio = dataEnvio;
+        this.tcc = tcc;
+    }
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public VersaoTCC() {
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
-	}
+    public LocalDate getDataEnvio() {
+        return dataEnvio;
+    }
 
-	public LocalDate getDataEntrega() {
-		return dataEntrega;
-	}
+    public void setDataEnvio(LocalDate dataEnvio) {
+        this.dataEnvio = dataEnvio;
+    }
 
-	public void setDataEntrega(LocalDate dataEntrega) {
-		this.dataEntrega = dataEntrega;
-	}
+    public TCC getTcc() {
+        return tcc;
+    }
 
-	public Aluno getAluno() {
-		return aluno;
-	}
+    public void setTcc(TCC tcc) {
+        this.tcc = tcc;
+    }
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-	public Orientador getOrientador() {
-		return orientador;
-	}
-
-	public void setOrientador(Orientador orientador) {
-		this.orientador = orientador;
-	}
-
-	public Coordenador getCoordenador() {
-		return coordenador;
-	}
-
-	public void setCoordenador(Coordenador coordenador) {
-		this.coordenador = coordenador;
-	}
-
-	public List<Termo> getTermos() {
-		return termos;
-	}
-
-	public void setTermos(List<Termo> termos) {
-		this.termos = termos;
-	}
-	
 }
